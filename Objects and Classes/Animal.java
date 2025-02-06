@@ -10,8 +10,8 @@ public class Animal {
 	 * constructor.
 	 */
 	public Animal() {
-		name = "no name";
-		age = 0;
+		this.name = "no name";
+		this.age = 0;
 	}
 	
 	
@@ -25,17 +25,18 @@ public class Animal {
 	 */
 	
 	
-	public Animal(int age1) {
-		
-		setAge(age1);
+	public Animal(int age) {
+		//this.age = age;
+		this();
+		setAge(age);
 		setName("no name");
 		
 	}
 	
 	
-	public Animal(String name1, int age1) {
-		setAge(age1);
-		setName(name1);
+	public Animal(String name, int age) {
+		this.setAge(age);
+		this.setName(name);
 		
 	}	
 	
@@ -50,19 +51,19 @@ public class Animal {
 	 * 
 	 * @param args
 	 */
-	public void setName(String name1) {
-		if(name1 == null || name1.trim().length() == 0) {
+	public void setName(String name) {
+		if(name == null || name.trim().length() == 0) {
 			System.out.println("You did not provide any name");
 		}else {
-			name = name1;
+			this.name = name;
 		}
 	}
 	
-	public void setAge(int age1) {
-		if(age1 < 0) {
+	public void setAge(int age) {
+		if(age < 0) {
 			System.out.println("Age cannot negative");
 		}else {
-			age = age1;
+			this.age = age;
 		}
 	}
 	
