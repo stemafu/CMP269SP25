@@ -19,6 +19,7 @@ public class FarmDriver {
 
 			myFarm.add(testAnimals[i]);
 		}
+		
 		System.out.println(myFarm.getNumAnimals());
 		//for(int i = 0; i < testAnimals.length; i++ ) {
 			myFarm.remove(7);

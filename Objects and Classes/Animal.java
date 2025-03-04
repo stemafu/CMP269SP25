@@ -83,5 +83,49 @@ public class Animal {
 	public int getAge() {
 		return age;
 	}
+	
+	public void sound() {
+		System.out.println("Sound");
+	}
+	
+	
+	/*
+	 * the following method will return true
+	 * if the two animals being compared are the same.
+	 */
+	public boolean equals(Object obj) {
+		// address check
+		if(this == obj) {
+			return true;
+		}
+		
+		// null check
+		if(obj == null) {
+			return false;
+		}
+		
+		// instance of check
+		if(! (obj instanceof Animal)) {
+			return false;
+		}
+		
+		
+		Animal otherAnimal = (Animal)obj;
+		
+		if(this.age != otherAnimal.age) {
+			return false;
+		}else if(this.name == null && otherAnimal.name != null) {
+			return false;
+		}else if(!this.name.equalsIgnoreCase(otherAnimal.name)) {
+			return false;
+		}
+		
+		/* return ((this.age == otherAnimal.age)  && 
+		(this.name == null && otherAnimal.name != null) &&
+		(this.name.equalsIgnoreCase(otherAnimal.name)));
+		*/ 
+		
+		return true;
+	}
 
 }
