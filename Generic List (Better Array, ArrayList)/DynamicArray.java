@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
 public class DynamicArray<I extends Comparable<I>> implements ListInterface<I>, Iterator {
@@ -12,6 +13,8 @@ public class DynamicArray<I extends Comparable<I>> implements ListInterface<I>, 
 	private Object [] elements;
 	private int numElements;
 	private final int default_array_size = 10;
+	
+	private int iteratorIndex;
 
 	/*
 	 * We need constructors.
@@ -33,7 +36,7 @@ public class DynamicArray<I extends Comparable<I>> implements ListInterface<I>, 
 	
 	public Iterator<I> iterator(){
 		//Vector vector = new Vector();
-		
+		iteratorIndex = 0;
 		DynamicArray <I>vector1 = new DynamicArray<I>();
 		
 		for(int i = 0; i<this.numElements; i++) {
@@ -111,7 +114,8 @@ public class DynamicArray<I extends Comparable<I>> implements ListInterface<I>, 
 		if(this.isEmpty()) {
 			return null; //
 		}else if(this.numElements -1 == index) {
-			return this.remove();
+			//re//turn this.remove();
+			return null;
 		}else {
 			I removedElement = (I)this.elements[index];
 
@@ -234,14 +238,21 @@ public static void main(String [] args) {
 
 @Override
 public boolean hasNext() {
-	// TODO Auto-generated method stub
-	return false;
+
+	
+	return iteratorIndex < this.numElements;
 }
 
 @Override
 public Object next() {
-	// TODO Auto-generated method stub
-	return null;
+	if(this.iteratorIndex == this.numElements) {
+		throw new NoSuchElementException("No items in the list");
+	}
+	
+	Object next = elements[this.iteratorIndex];
+	this.iteratorIndex++;
+	
+	return next;
 }
 /**/
 public void remove() {
