@@ -10,17 +10,24 @@ public class SumThread implements Runnable {
 
 
 
-		if(Thread.currentThread().getName().equals("Sum 1")) {
-			//System.out.println(Thread.currentThread().getName());
-			for(int i = 0; i < nums.length/2; i++) {
-				sum = sum + nums[i];
+			if(Thread.currentThread().getName().equals("Sum 1")) {
+				//System.out.println(Thread.currentThread().getName());
+				for(int i = 0; i < nums.length/2; i++) {
+					//sum = sum + nums[i];
+					sum(sum, nums[i]);
+				}
+			}else {
+				for(int i = nums.length/2; i < nums.length; i++) {
+					//sum = sum + nums[i];
+					sum(sum, nums[i]);
+				}
 			}
-		}else {
-			for(int i = nums.length/2; i < nums.length; i++) {
-				sum = sum + nums[i];
-			}
-		}
+		//}
 
+	}
+	
+	public synchronized void sum(int num1, int num2) {
+		sum = num1 + num2;
 	}
 
 	public void display() {
@@ -46,13 +53,13 @@ public class SumThread implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			if(sum1.sum != 101) {
 				sum1.display();
 			}
 		}
 		System.out.println("here");
-		
+
 	}
 
 }

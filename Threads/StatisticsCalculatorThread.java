@@ -63,7 +63,7 @@ public class StatisticsCalculatorThread {
 		
 		
 		System.out.println(stats.max);
-		System.out.println (stats.min);
+		System.out.println(stats.min);
 
 	}
 
