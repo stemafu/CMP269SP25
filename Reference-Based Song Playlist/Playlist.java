@@ -20,8 +20,35 @@ public class Playlist implements PlaylistInterface{
 	}
 
 	@Override
-	public void add(Song song, int index) throws NullPointerException {
-		// TODO Auto-generated method stub
+	public void add(Song song, int index) throws NullPointerException, IndexOutOfBoundsException {
+	
+		if(index < 0 || index > this.numSongs) {
+			throw new IndexOutOfBoundsException("Invalid index");
+		}
+		
+		if(song == null) {
+			throw new NullPointerException("Song cannot be null");
+		}
+		
+		
+		if(this.numSongs == index ) {
+			this.addToBack(song);
+		}else if(index == 0){
+			this.addToFront(song);
+		}else {
+			
+			Song current = this.firstSong;
+			int currentIndex = 0;
+			
+			while(currentIndex != (index - 1)) {
+				current = current.getNext();
+				currentIndex++;
+			}
+			
+			song.setNext(current.getNext());
+			current.setNext(song);
+			this.numSongs++;			
+		}
 		
 	}
 
@@ -33,8 +60,59 @@ public class Playlist implements PlaylistInterface{
 
 	@Override
 	public Song remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(index < 0 || index >= this.numSongs) {
+			throw new IndexOutOfBoundsException("Invalid index");
+		}
+		
+		
+		if(this.numSongs == 1) {
+			Song removedSong = this.get(0);
+			this.removeAll();
+			return removedSong;
+		}else if ((this.numSongs - 1) == index) {
+			Song current = this.firstSong;
+			int currentIndex = 0;
+			
+			while(currentIndex != (index - 1)) {
+				current = current.getNext();
+				currentIndex++;
+			}
+			
+			
+			Song removedSong = current.getNext();
+			
+			this.lastSong = current;
+			this.lastSong.setNext(null);
+			this.numSongs--;
+			
+			return removedSong;
+			
+		}else if (0 == index) {
+			Song removedSong =	this.firstSong;
+			
+			this.firstSong = this.firstSong.getNext();
+			this.numSongs--;
+			
+			return removedSong;
+		}else {
+			Song current = this.firstSong;
+			Song previous = null;
+			int currentIndex = 0;
+			
+			while(currentIndex != index) {
+				previous = current;
+				current = current.getNext();
+				currentIndex++;
+			}
+			
+			
+			Song removedSong =	current;
+			
+			previous.setNext(current.getNext());
+			this.numSongs--;
+			return removedSong;
+		}
 	}
 
 	@Override
