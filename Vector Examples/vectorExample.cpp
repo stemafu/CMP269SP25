@@ -19,5 +19,8 @@ int main(){
         cout << scores.at(i) << "\n" ;
     }
 
+
+
+
     return 0; 
 }
