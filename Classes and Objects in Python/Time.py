@@ -46,5 +46,9 @@ def main():
     """
     time2 = Time(10, 10)
     time2.display()
+    
+    time3 = Time(1, 50)
+    time3.setHours(5)
+    time3.display()
 
 main()

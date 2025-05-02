@@ -31,8 +31,28 @@ def toLetterGrade(score):
     return letter
 
 def main():
-    examScore = int(input("Enter a number: "))
-    print(toLetterGrade(examScore))
+    #examScore = int(input("Enter a number: "))
+    #print(toLetterGrade(examScore))
+
+    #  Open a file that contains students scores
+    inputFile = open("data.csv", "r")
+    count  = 0
+    # sum  is a variable that will contain the sum of all scores
+    sum = 0;
+    for line in inputFile:
+        # let us take the line and convert it into a list(array)
+        lineValues = line.split(",")
+        if(count > 0):
+            score = int(lineValues[1])
+            sum = sum + score
+            print(lineValues[0] + " " + lineValues[1]  + " " +  toLetterGrade(score))
+        
+        count = count + 1
+    
+    average = sum / (count - 1) 
+    print ("The average score is " + str(average ))
+    # close the opened file
+    inputFile.close()
 
 
 main()
